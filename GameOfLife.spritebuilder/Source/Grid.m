@@ -109,5 +109,8 @@ static const int GRID_COLUMNS = 10;
 	}
 }
 
+-(void)update:(CCTime)delta {
+	[self evolveStep];
+}
 
 @end
