@@ -33,20 +33,31 @@ static const int GRID_COLUMNS = 10;
 
 	_gridArray = [NSMutableArray array];
 
-	for (unsigned int i = 0; i < GRID_ROWS; ++i) {
+	for (u_int i = 0; i < GRID_ROWS; ++i) {
 		_gridArray[i] = [NSMutableArray array];
 		x = 0;
-		for (unsigned int j = 0; j < GRID_COLUMNS; ++j) {
+		for (u_int j = 0; j < GRID_COLUMNS; ++j) {
 			Creature *creature = [[Creature alloc] initCreature];
 			creature.anchorPoint = ccp(0, 0);
 			creature.position = ccp(x, y);
 			[self addChild:creature];
 			_gridArray[i][j] = creature;
-			creature.isAlive = YES;
 			x += _cellWidth;
 		}
 		y += _cellHeight;
 	}
+}
+
+-(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+	CGPoint touchLocation = [touch locationInNode:self];
+	Creature *creature = [self creatureForTouchLocation:touchLocation];
+	creature.isAlive = !creature.isAlive;
+}
+
+- (Creature *)creatureForTouchLocation:(CGPoint)point {
+	u_int column = (u_int) (point.x / _cellWidth);
+	u_int row = (u_int) (point.y / _cellHeight);
+	return _gridArray[row][column];
 }
 
 @end
