@@ -71,11 +71,11 @@ static const int GRID_COLUMNS = 10;
 		for (u_int j = 0; j < [_gridArray count]; ++j) {
 			Creature *current = _gridArray[i][j];
 			current.livingNeighbors = 0;
-			for (int x = (i-1); x <= (i+1) ; ++x) {
-				for (int y = (j-1); y <= (j+1) ; ++y) {
-					BOOL isIndexValid = [self isIndexValidForX:y andY:x];
-					if ((x != i) && (y != j) && isIndexValid) {
-						Creature *neighbor = _gridArray[x][y];
+			for (int y = (i-1); y <= (i+1) ; ++y) {
+				for (int x = (j-1); x <= (j+1) ; ++x) {
+					BOOL isIndexValid = [self isIndexValidForX:x andY:y];
+					if ((y != i) && (x != j) && isIndexValid) {
+						Creature *neighbor = _gridArray[y][x];
 						if (neighbor.isAlive) {
 							current.livingNeighbors++;
 						}
