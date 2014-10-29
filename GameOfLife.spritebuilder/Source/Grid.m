@@ -95,6 +95,7 @@ static const int GRID_COLUMNS = 10;
 }
 
 - (void)updateCreatures {
+    _totalAlive = 0;
 	for (u_int i = 0; i < GRID_ROWS; ++i) {
 		for (u_int j = 0; j < GRID_COLUMNS; ++j) {
 			Creature *current = _gridArray[i][j];
@@ -113,6 +114,7 @@ static const int GRID_COLUMNS = 10;
 				}
 			}
 			current.isAlive = alive;
+            _totalAlive += (alive == YES);
 		}
 	}
 }
