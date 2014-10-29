@@ -99,10 +99,18 @@ static const int GRID_COLUMNS = 10;
 		for (u_int j = 0; j < [_gridArray count]; ++j) {
 			Creature *current = _gridArray[i][j];
 			BOOL alive = NO;
-			if (current.livingNeighbors == 3) {
-				current.isAlive = YES;
-			} else if (current.livingNeighbors == 2 && current.isAlive) {
-				current.isAlive = YES;
+			if (current.isAlive) {
+				if (current.livingNeighbors < 2) {
+					alive = NO;
+				} else if (current.livingNeighbors == 2 || current.livingNeighbors == 3) {
+					alive = YES;
+				} else if (current.livingNeighbors > 3) {
+					alive = NO;
+				}
+			} else {
+				if (current.livingNeighbors == 3) {
+					alive = YES;
+				}
 			}
 			current.isAlive = alive;
 		}
