@@ -11,7 +11,10 @@
 
 @implementation MainScene
 
+Grid* _grid;
 CCTimer *_timer;
+CCLabelTTF *_generationLabel;
+CCLabelTTF *_populationLabel;
 
 - (id)init {
     self = [super init];
