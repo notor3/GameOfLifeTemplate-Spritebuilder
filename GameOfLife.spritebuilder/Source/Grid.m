@@ -73,7 +73,7 @@ static const int GRID_COLUMNS = 10;
 			current.livingNeighbors = 0;
 			for (int x = (i-1); x <= (i+1) ; ++x) {
 				for (int y = (j-1); y <= (j+1) ; ++y) {
-					BOOL isIndexValid = [self isIndexValidForX:y andY:x];
+					BOOL isIndexValid = [self isIndexValidForX:x andY:y];
 					if (!((x == i) && (y == j) && isIndexValid)) {
 						Creature *neighbor = _gridArray[x][y];
 						if (neighbor.isAlive) {
@@ -87,7 +87,7 @@ static const int GRID_COLUMNS = 10;
 }
 
 - (BOOL)isIndexValidForX:(int)x andY:(int)y {
-	if (x < 0 || y < 0 || x >= GRID_ROWS || y >= GRID_COLUMNS) {
+	if (x < 0 || y < 0 || x >= GRID_COLUMNS || y >= GRID_ROWS) {
 		return NO;
 	}
 
