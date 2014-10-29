@@ -10,6 +10,8 @@
 
 @interface MainScene : CCNode
 
+@property CCLabelTTF *_populationLabel;
+
 - (void)play;
 - (void)pause;
 
