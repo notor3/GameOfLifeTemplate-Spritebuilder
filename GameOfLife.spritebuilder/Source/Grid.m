@@ -69,8 +69,8 @@ static const int GRID_COLUMNS = 10;
 }
 
 - (void)countNeighbors {
-	for (u_int i = 0; i < [_gridArray count]; ++i) {
-		for (u_int j = 0; j < [_gridArray count]; ++j) {
+	for (u_int i = 0; i < GRID_ROWS; ++i) {
+		for (u_int j = 0; j < GRID_COLUMNS; ++j) {
 			Creature *current = _gridArray[i][j];
 			current.livingNeighbors = 0;
 			for (int y = (i-1); y <= (i+1) ; ++y) {
@@ -97,8 +97,8 @@ static const int GRID_COLUMNS = 10;
 }
 
 - (void)updateCreatures {
-	for (u_int i = 0; i < [_gridArray count]; ++i) {
-		for (u_int j = 0; j < [_gridArray count]; ++j) {
+	for (u_int i = 0; i < GRID_ROWS; ++i) {
+		for (u_int j = 0; j < GRID_COLUMNS; ++j) {
 			Creature *current = _gridArray[i][j];
 			BOOL alive = NO;
 			if (current.isAlive) {
@@ -120,7 +120,7 @@ static const int GRID_COLUMNS = 10;
 }
 
 -(void)update:(CCTime)delta {
-    if (_elapsed > 1.0) {
+    if (_elapsed > 5.0) {
         [self evolveStep];
         _elapsed = 0.0;
     } else {
