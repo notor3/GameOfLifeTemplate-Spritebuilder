@@ -7,9 +7,12 @@
 //
 
 #import "CCNode.h"
+#import "Grid.h"
 
 @interface MainScene : CCNode
 
+@property Grid* grid;
+@property CCLabelTTF *generationLabel;
 @property CCLabelTTF *populationLabel;
 
 - (void)play;
