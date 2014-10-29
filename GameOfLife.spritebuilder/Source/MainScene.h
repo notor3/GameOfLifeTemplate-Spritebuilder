@@ -10,4 +10,8 @@
 
 @interface MainScene : CCNode
 
+Grid* _grid;
+CCLabelTTF *_generationLabel;
+CCLabelTTF *_populationLabel;
+
 @end
