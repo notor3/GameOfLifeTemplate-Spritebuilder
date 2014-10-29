@@ -17,11 +17,13 @@ static const int GRID_COLUMNS = 10;
 	NSMutableArray *_gridArray;
 	float _cellWidth;
 	float _cellHeight;
+    float _elapsed;
 
 -(void)onEnter {
 	[super onEnter];
 	[self setupGrid];
 	self.userInteractionEnabled = YES;
+    _elapsed = 0.0;
 }
 
 - (void)setupGrid {
@@ -118,7 +120,12 @@ static const int GRID_COLUMNS = 10;
 }
 
 -(void)update:(CCTime)delta {
-//	[self evolveStep];
+    if (_elapsed > 1.0) {
+        [self evolveStep];
+        _elapsed = 0.0;
+    } else {
+        _elapsed += delta;
+    }
 }
 
 @end
